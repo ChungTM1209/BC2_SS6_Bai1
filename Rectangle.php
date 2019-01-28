@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dungduong
- * Date: 11/21/18
- * Time: 17:16
- */
-include_once ('Shape.php');
 
-class Rectangle extends Shape
+include_once('Shape.php');
+include_once 'Resizeable.php';
+
+class Rectangle extends Shape implements Resizeable
 {
     public $width;
     public $height;
-
     public function __construct($name, $width, $height)
     {
         parent::__construct($name);
@@ -19,11 +14,20 @@ class Rectangle extends Shape
         $this->height = $height;
     }
 
-    public function calculateArea(){
+    public function calculateArea()
+    {
         return $this->height * $this->width;
     }
 
-    public function calculatePerimeter(){
+    public function calculatePerimeter()
+    {
         return ($this->height + $this->width) * 2;
     }
+
+    public function resize($doublePercent)
+    {
+        $this->width += $this->width * $doublePercent / 100;
+        $this->height += $this->height * $doublePercent / 100;
+    }
+
 }

@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dungduong
- * Date: 11/21/18
- * Time: 17:14
- */
-include_once ('Shape.php');
 
-class Circle extends Shape
+include_once('Shape.php');
+include_once 'Resizeable.php';
+
+class Circle extends Shape implements Resizeable
 {
     public $radius;
 
@@ -17,11 +13,18 @@ class Circle extends Shape
         $this->radius = $radius;
     }
 
-    public function calculateArea(){
+    public function calculateArea()
+    {
         return pi() * pow($this->radius, 2);
     }
 
-    public function calculatePerimeter(){
+    public function calculatePerimeter()
+    {
         return pi() * $this->radius * 2;
+    }
+
+    public function resize($doublePercent)
+    {
+        $this->radius += $this->radius * $doublePercent / 100;
     }
 }
